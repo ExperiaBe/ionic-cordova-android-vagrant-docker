@@ -17,7 +17,7 @@ CMD ["/sbin/my_init"]
 RUN useradd -m -p node node
 RUN chsh -s /bin/bash node
 RUN su - node -c "touch ~/.bash_profile"
-
+USER root
 # ...put your own build instructions here...
 RUN apt-get update
 
