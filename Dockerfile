@@ -20,7 +20,12 @@ RUN apt-get update
 ## Create a user for the web app.
 RUN addgroup --gid 9999 app
 RUN adduser --uid 9999 --gid 9999 --gecos "Application" app
-RUN echo app | passwd app --stdin
+
+
+RUN useradd -m -p node node
+RUN chsh -s /bin/bash node
+RUN su - node -c "touch ~/.bash_profile"
+
 
 # Android Install
 
@@ -59,3 +64,5 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 RUN npm install -g cordova
 RUN npm install -g ionic
+
+CMD su - node
