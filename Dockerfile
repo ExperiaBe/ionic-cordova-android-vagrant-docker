@@ -14,17 +14,18 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
+RUN useradd -m -p node node
+RUN chsh -s /bin/bash node
+RUN su - node -c "touch ~/.bash_profile"
+
 # ...put your own build instructions here...
 RUN apt-get update
 
 ## Create a user for the web app.
-RUN addgroup --gid 9999 app
-RUN adduser --uid 9999 --gid 9999 --gecos "Application" app
+#RUN addgroup --gid 9999 app
+#RUN adduser --uid 9999 --gid 9999 --gecos "Application" app
 
 
-RUN useradd -m -p node node
-RUN chsh -s /bin/bash node
-RUN su - node -c "touch ~/.bash_profile"
 
 
 # Android Install
